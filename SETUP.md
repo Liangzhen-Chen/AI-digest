@@ -94,8 +94,7 @@ gh repo create ai-digest --private --push --source=.
 5. 点击绿色按钮 **「Create repository」**
 6. 创建成功后，页面会显示一个上传指引
 7. 点击页面中间的 **「uploading an existing file」** 链接
-8. 把 `ai-digest` 文件夹里的 **所有文件和文件夹** 拖进上传区域：
-   - `.github/`（文件夹，里面有 workflows）
+8. 把 `ai-digest` 文件夹里的**以下文件**拖进上传区域：
    - `feeds.py`
    - `summarizer.py`
    - `mailer.py`
@@ -108,7 +107,18 @@ gh repo create ai-digest --private --push --source=.
 9. 注意 **不要上传** `.env` 文件（里面有你的密钥）
 10. 在页面下方的 "Commit changes" 区域，直接点击绿色按钮 **「Commit changes」**
 
-> ⚠️ `.github` 文件夹是隐藏文件夹（以 `.` 开头），Mac 在 Finder 里按 `Cmd+Shift+.` 可以显示隐藏文件，Windows 在文件管理器「查看」菜单里勾选「隐藏的项目」。
+> ⚠️ GitHub 网页上传**不支持上传文件夹**，所以 `.github/workflows/daily-digest.yml` 需要手动创建，见下方 3.3。
+
+### 3.3 手动创建 workflow 文件（网页上传必做）
+
+> 如果你用的是 3.1 命令行方式上传的，`.github` 文件夹已经包含在内，可以跳过这步。
+
+1. 在仓库页面点击 **「Add file」** → **「Create new file」**
+2. 在文件名输入框里输入：`.github/workflows/daily-digest.yml`
+   - 输入每个 `/` 时 GitHub 会自动把前面的部分变成文件夹，这是正常的，继续输入即可
+3. 在下方编辑区粘贴 `daily-digest.yml` 的完整内容（见项目文件夹中的 `.github/workflows/daily-digest.yml`）
+4. 点击右上角绿色按钮 **「Commit changes」**
+5. 回到仓库主页，确认能看到 `.github/workflows` 文件夹
 
 ---
 
