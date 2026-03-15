@@ -1,0 +1,43 @@
+name: Daily AI Digest
+
+on:
+  schedule:
+    # 9:00 AM London time
+    # UTC+0 in winter (Nov-Mar), UTC+1 in summer (Mar-Oct)
+    # Use 8:00 UTC year-round → 9AM BST / 8AM GMT
+    - cron: "0 8 * * *"   # 9:00 AM BST (Mar-Oct)
+    # - cron: "0 9 * * *" # 9:00 AM GMT (Nov-Mar) — uncomment for winter
+
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run digest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python main.py
+
+      # Persist product_history.json back to the repo
+      # so future runs know which products were already featured
+      - name: Commit product history
+        run: |
+          git config user.name "AI Digest Bot"
+          git config user.email "bot@ai-digest"
+          git add product_history.json
+          git diff --cached --quiet || git commit -m "update product history [skip ci]"
+          git push
