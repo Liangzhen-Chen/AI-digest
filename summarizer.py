@@ -116,9 +116,8 @@ def summarize_digest(feeds: dict[str, list[dict]]) -> str:
 
     # Try models in order — free tier availability changes frequently
     models_to_try = [
-        "gemini-2.0-flash-lite",  # free tier as of 2025
-        "gemini-1.5-flash",       # fallback free tier
-        "gemini-1.5-flash-8b",    # smaller fallback
+        "gemini-2.5-flash",       # free tier: 5 RPM, 2 TPM
+        "gemini-2.0-flash-lite",  # fallback
     ]
 
     contents = [
