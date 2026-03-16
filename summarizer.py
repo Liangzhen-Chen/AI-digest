@@ -114,12 +114,36 @@ def summarize_digest(feeds: dict[str, list[dict]]) -> str:
         + "\n\n⚠️ 请在「每日产品拆解」板块的第一行用 [[PRODUCT:产品名称]] 格式标注你选择拆解的产品名称，方便系统记录。"
     )
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",  # free tier, fast, capable
-        contents=[
-            {"role": "user", "parts": [{"text": SYSTEM_PROMPT + "\n\n" + user_prompt}]}
-        ],
-    )
+    # Try models in order — free tier availability changes frequently
+    models_to_try = [
+        "gemini-2.0-flash-lite",  # free tier as of 2025
+        "gemini-1.5-flash",       # fallback free tier
+        "gemini-1.5-flash-8b",    # smaller fallback
+    ]
+
+    contents = [
+        {"role": "user", "parts": [{"text": SYSTEM_PROMPT + "\n\n" + user_prompt}]}
+    ]
+
+    response = None
+    for model_name in models_to_try:
+        try:
+            print(f"  Trying model: {model_name}")
+            response = client.models.generate_content(
+                model=model_name,
+                contents=contents,
+            )
+            print(f"  ✅ Success with {model_name}")
+            break
+        except Exception as e:
+            print(f"  ❌ {model_name} failed: {e}")
+            continue
+
+    if response is None:
+        raise RuntimeError(
+            "All Gemini models failed. Check your API key and quota at "
+            "https://ai.dev/rate-limit"
+        )
 
     digest = response.text
 
