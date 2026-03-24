@@ -2,11 +2,11 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # 9:00 AM London time
+    # 7:00 AM London time
     # UTC+0 in winter (Nov-Mar), UTC+1 in summer (Mar-Oct)
-    # Use 8:00 UTC year-round → 9AM BST / 8AM GMT
-    - cron: "0 8 * * *"   # 9:00 AM BST (Mar-Oct)
-    # - cron: "0 9 * * *" # 9:00 AM GMT (Nov-Mar) — uncomment for winter
+    # Use 6:00 UTC year-round → 7AM BST / 6AM GMT
+    - cron: "0 6 * * *"   # 7:00 AM BST (Mar-Oct)
+    # - cron: "0 7 * * *" # 7:00 AM GMT (Nov-Mar) — uncomment for winter
 
   workflow_dispatch: # Allow manual trigger
 
