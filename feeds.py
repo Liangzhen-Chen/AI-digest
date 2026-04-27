@@ -11,10 +11,8 @@ from datetime import datetime, timedelta, timezone
 FEED_SOURCES = {
     # ━━ 时事板块 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     "国际经济政治": [
-        {"name": "BBC World",       "url": "http://feeds.bbci.co.uk/news/world/rss.xml"},
         {"name": "BBC Business",    "url": "http://feeds.bbci.co.uk/news/business/rss.xml"},
-        {"name": "Reuters World",   "url": "https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best"},
-        {"name": "经济学人",         "url": "https://www.economist.com/international/rss.xml"},
+        {"name": "经济学人 Finance", "url": "https://www.economist.com/finance-and-economics/rss.xml"},
         {"name": "FT",              "url": "https://www.ft.com/rss/home/uk"},
     ],
     "AI动态": [
@@ -22,6 +20,8 @@ FEED_SOURCES = {
         {"name": "The Verge AI",       "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"},
         {"name": "OpenAI Blog",        "url": "https://openai.com/blog/rss.xml"},
         {"name": "Google AI Blog",     "url": "https://blog.google/technology/ai/rss/"},
+        {"name": "VentureBeat AI",     "url": "https://venturebeat.com/category/ai/feed/"},
+        {"name": "Simon Willison",      "url": "https://simonwillison.net/atom/everything/"},
         {"name": "Hacker News",        "url": "https://hnrss.org/newest?q=AI+OR+LLM+OR+GPT&points=50"},
     ],
     "商业与金融": [
@@ -31,6 +31,7 @@ FEED_SOURCES = {
         {"name": "36氪",           "url": "https://36kr.com/feed"},
     ],
     "科技动态": [
+        {"name": "Techmeme",        "url": "https://www.techmeme.com/feed.xml"},
         {"name": "TechCrunch",     "url": "https://techcrunch.com/feed/"},
         {"name": "The Verge",      "url": "https://www.theverge.com/rss/index.xml"},
         {"name": "Ars Technica",   "url": "https://feeds.arstechnica.com/arstechnica/index"},
@@ -48,6 +49,7 @@ FEED_SOURCES = {
         {"name": "人人都是产品经理",    "url": "https://www.woshipm.com/feed"},
         {"name": "少数派",             "url": "https://sspai.com/feed"},
         {"name": "Product Hunt",      "url": "https://www.producthunt.com/feed"},
+        {"name": "Platformer",        "url": "https://www.platformer.news/feed"},
         {"name": "Stratechery",       "url": "https://stratechery.com/feed/"},
         {"name": "a16z Blog",         "url": "https://a16z.com/feed/"},
         {"name": "虎嗅",              "url": "https://www.huxiu.com/rss/0.xml"},
@@ -61,11 +63,6 @@ FEED_SOURCES = {
 
 # YouTube channels (via RSS — no API key needed)
 YOUTUBE_CHANNELS = {
-    "国际经济政治": [
-        {"name": "BBC News",          "channel_id": "UC16niRr50-MSBwiO3YDb3RA"},
-        {"name": "Al Jazeera",        "channel_id": "UCNye-wNBqNL5ZzHSJj3l8Bg"},
-        {"name": "DW News",           "channel_id": "UCknLrEdhRCp1aegoMqRaCZg"},
-    ],
     "AI动态": [
         {"name": "Two Minute Papers",  "channel_id": "UCbfYPyITQ-7l4upoX8nvctg"},
         {"name": "Matt Wolfe",         "channel_id": "UCJMQEbKsmRYAMpYHBbMEv2g"},
